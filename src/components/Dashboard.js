@@ -8,15 +8,18 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   const user = useSelector((store) => store.user)
+  console.log(user.isAuthenticated);
+
+  const isAuthenticated = user?.isAuthenticated;
+
+   useEffect(() => {
+     if (!isAuthenticated) {
+       console.log(isAuthenticated) 
+        navigate ("/")
+     }
+  }, []);
   
-  useEffect(() => {
-    const isAuthenticated = user.isAuthenticated;
-    console.log(isAuthenticated);
-    
-    if (!isAuthenticated) {
-        navigate("/")
-    }
-  },[])
+ 
   
   return (
     <div>
@@ -25,10 +28,10 @@ const Dashboard = () => {
         
         <img class="w-36 h-36 p-1 -mt-36 mx-14 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src={USER_ICON} alt="Bordered avatar" />
 
-        <div className='my-8'>
-          <p className='text-black m-1 font-bold' > UserName: {user.userDetails.user_firstname} </p>
-          <p className='text-black m-1 font-bold' > Email:  {user.userDetails.user_email} </p>
-          <p className='text-black m-1 font-bold' > Mobile Number: {user.userDetails.user_phone} </p>
+       <div className='my-8'>
+          <p className='text-black m-1 font-bold' > UserName: {user?.userDetails?.user_firstname} </p>
+          <p className='text-black m-1 font-bold' > Email:  {user?.userDetails?.user_email} </p>
+          <p className='text-black m-1 font-bold' > Mobile Number: {user?.userDetails?.user_phone} </p>
         </div>
         
             </div>
